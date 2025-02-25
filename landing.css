@@ -1,0 +1,224 @@
+@font-face {
+    font-family: 'Javel Cursive';
+    src: url('Javel-RegularCursive.woff2') format('woff2'),
+        url('Javel-RegularCursive.woff') format('woff');
+    font-weight: normal;
+    font-style: italic;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Javel';
+    src: url('Javel-Bold.woff2') format('woff2'),
+        url('Javel-Bold.woff') format('woff');
+    font-weight: bold;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Javel';
+    src: url('Javel-Regular.woff2') format('woff2'),
+        url('Javel-Regular.woff') format('woff');
+    font-weight: bold;
+    font-style: normal;
+    font-display: swap;
+}
+
+
+
+:root {
+    --blue: #2F398A;
+    --green: #005C32;
+    --brown: #847650;
+    --cream: #FFFDF5;
+    --nav-height: 1rem;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    font-family: 'Javel', sans-serif;
+    color: black;
+    background: var(--cream);
+    height: 100vh;
+}
+
+.paper-overlay {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    width: 50w;
+    height: 50vh;
+    transform: translate(-50%, -50%);
+    background-image: url('SOTE_PAPER.png');
+    background-size: cover;
+    mix-blend-mode: multiply;
+    opacity: 1;
+    z-index: 2;
+    pointer-events: none;
+}
+
+.content {
+    position: relative;
+    z-index: 3;
+    padding: 3rem;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.falling-letters {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: -1;
+}
+
+.falling-letters span {
+    display: inline-block;
+    font-size: 100rem;
+    opacity: 1;
+    text-transform: uppercase;
+    margin: 0 0 rem; 
+    line-height: 0;
+    transform: rotate(80deg);
+    z-index: -1;
+    color: var(--brown);
+    letter-spacing: 12rem;
+    display: none;
+}
+
+.static-title {
+    font-size: 2rem;
+    text-transform: uppercase;
+    margin: 0 0 2rem;
+    position: relative;
+    z-index: 2;
+    font-weight: lighter;
+    font-family: 'Javel Cursive';
+
+}
+
+.text-columns {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 2rem;
+}
+
+.column {
+    text-align: justify;
+    hyphens: auto;
+    font-size: 1rem;
+    line-height: 1.5;
+}
+
+.enter-link {
+    position: fixed;
+    bottom: 2rem;
+    color: black;
+    text-decoration: none;
+    font-size: 1rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    transition: opacity 0.3s ease;
+}
+
+.enter-link:hover {
+    opacity: 0.7;
+}
+
+.frames {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    pointer-events: none;
+    z-index: 10;
+}
+
+.frame {
+    height: 2rem;
+}
+
+.frame.blue { background: var(--blue); }
+.frame.green { background: var(--green); }
+.frame.brown { background: var(--brown); }
+.frame.cream { background: var(--cream); }
+
+/* Frame pairs */
+.frame-pair {
+    flex: 1;
+    display: flex;
+}
+
+.frame-pair .frame {
+    flex: 1;
+}
+
+/* Top and Bottom Frame Rows */
+.frame-row {
+    position: absolute;
+    left: 0;
+    width: 100%;
+    display: flex;
+}
+
+.frame-row .frame {
+    height: 0.5rem;
+}
+
+.frame-row.top { top: 0; }
+.frame-row.bottom { bottom: 0; }
+
+/* Left and Right Frame Columns */
+.frame-column {
+    position: absolute;
+    top: 0;
+    width: 0.5rem;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.frame-column .frame-pair {
+    flex: 1;
+    flex-direction: column;
+}
+
+.frame-column .frame {
+    width: 0.5rem;
+    flex: 1;
+}
+
+.frame-column.left { left: 0; }
+.frame-column.right { right: 0; }
+
+.background-cars {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: 0;
+    pointer-events: none;
+}
+
+.car-bg {
+    position: absolute;
+    width: 10vw;
+    height: 7vw;
+    background-image: url('SOTE_CAR.png');
+    background-size: cover;
+    background-position: center;
+    mix-blend-mode: multiply;
+    opacity: 0.7;
+}

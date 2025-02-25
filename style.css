@@ -1,0 +1,550 @@
+@font-face {
+    font-family: 'Javel Cursive';
+    src: url('Javel-RegularCursive.woff2') format('woff2'),
+        url('Javel-RegularCursive.woff') format('woff');
+    font-weight: normal;
+    font-style: italic;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Javel';
+    src: url('Javel-Bold.woff2') format('woff2'),
+        url('Javel-Bold.woff') format('woff');
+    font-weight: bold;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Javel';
+    src: url('Javel-Regular.woff2') format('woff2'),
+        url('Javel-Regular.woff') format('woff');
+    font-weight: bold;
+    font-style: normal;
+    font-display: swap;
+}
+
+
+
+
+:root {
+    --blue: #2F398A;
+    --green: #005C32;
+    --brown: #847650;
+    --cream: #FFFDF5;
+    --nav-height: 1rem;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    min-height: 100vh;
+    overflow: hidden;
+    color: #333;
+    font-family: 'Javel';
+}
+
+.book-container {
+    position: relative;
+    width: 100vw;
+    height: calc(100vh - var(--nav-height));
+    overflow: hidden;
+    padding: 0;
+    line-height: 1pt;
+    margin-top: var(--nav-height);
+    z-index: 1;
+}
+
+.book-spread {
+    display: none;
+    width: 100%;
+    height: 100%;
+    gap: 0;
+    margin-top: 6rem;
+}
+
+.book-spread.active {
+    display: flex;
+}
+
+.book-column {
+    flex: 1;
+    height: 100%;
+    position: relative;
+    background: var(--cream);
+    position: relative;
+    
+}
+
+.book-column::before {
+    content: '';
+    position: absolute;
+    top: 1rem;
+    left: 1rem;
+    right: 1rem;
+    bottom: 1rem;
+    pointer-events: none;
+}
+
+.left-page {
+    box-shadow: inset -10px 0 20px #005C32;
+}
+
+.right-page {
+    box-shadow: inset 10px 0 20px #847650;
+}
+
+.page-content {
+    margin: 2vw;
+    margin-right: 4vw;
+    height: 100%;
+    overflow-y: auto;
+    padding: 3rem;
+    position: relative;
+    z-index: 1;
+    font-weight: lighter;
+    font-family: 'Javel Cursive';
+}
+
+.page-content h2 {
+    margin-bottom: 1.5rem;
+    color: black;
+    font-size: 1rem;
+    text-align: center;
+    text-decoration: dotted 1px black;
+    text-underline-offset: 2px;
+    text-transform: uppercase;
+    font-style: italic;
+    font-weight: lighter;
+    font-family: 'Javel Regular';
+}
+
+.text-content {
+    line-height: 1.6;
+    font-size: 1.1rem;
+    color: #333;
+}
+
+.navigation-arrows {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 100;
+    font-family: 'Times New Roman';
+}
+
+.nav-arrow {
+    position: absolute;
+    padding: 0.5rem;
+    cursor: pointer;
+    pointer-events: all;
+    transition: opacity 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+    background: none;
+    border: none;
+    font-family: 'Javel';
+    color: black;
+    opacity: 0.7;
+}
+
+.nav-arrow:hover {
+    opacity: 1;
+}
+
+.nav-arrow.left {
+    left: 2rem;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+.nav-arrow.right {
+    right: 2rem;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+.nav-arrow.up {
+    top: 2rem;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.nav-arrow.down {
+    bottom: 2rem;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.nav-info {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    background: none;
+    border: none;
+    color: var(--brown);
+    font-family: 'Javel', sans-serif;
+    font-size: 1rem;
+    cursor: pointer;
+    padding: 0.5rem 1rem;
+    transition: color 0.3s ease;
+}
+
+.nav-info:hover {
+    color: var(--blue);
+}
+
+.sticky-nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    padding: 1.5rem 2rem;
+    height: var(--nav-height);
+    z-index: 1000;
+    font-family: 'Javel Cursive';
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: black;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-weight: lighter;
+    background: var(--cream);
+    box-shadow: 1vw 1vh 0.5vw 0.1vh var(--cream);
+}
+
+.sticky-nav a {
+    font-family: 'Javel Cursive';
+    color: black;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.sticky-nav a:hover {
+    color: var(--blue);
+}
+
+.home-link {
+    color: var(--brown);
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.home-link:hover {
+    color: var(--blue);
+}
+
+.info-link {
+    color: var(--brown);
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.info-link:hover {
+    color: var(--blue);
+}
+
+.index-link {
+    text-decoration: none;
+    font-family: 'Javel';
+    font-size: 1rem;
+    cursor: pointer;
+    color: black;
+    letter-spacing: 1px;
+}
+
+.index-link:hover {
+    text-decoration: underline;
+}
+
+.index-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: var(--cream);
+    z-index: 5000;
+    visibility: hidden;
+    opacity: 0;
+    padding: 0;
+    pointer-events: none;
+}
+
+.index-overlay.active {
+    visibility: visible;
+    opacity: 1;
+    pointer-events: all;
+}
+
+.index-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 50vw);
+    grid-template-rows: repeat(4, 25vh);
+    width: 100%;
+    height: 100%;
+}
+
+.index-item {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    padding: 2rem;
+    box-shadow: inset 0 0 0 2px rgba(0, 0, 0, 0.1);
+}
+
+.index-item span {
+    color: white;
+    font-family: 'Javel';
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    mix-blend-mode: difference;
+}
+
+.close-overlay {
+    position: fixed;
+    top: 2rem;
+    right: 2rem;
+    background: none;
+    border: none;
+    font-size: 2rem;
+    cursor: pointer;
+    color: black;
+    z-index: 5001;
+    width: 3rem;
+    height: 3rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Javel';
+}
+
+.grid-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: 10;
+    pointer-events: none;
+    mix-blend-mode: multiply;
+}
+
+.grid-overlay img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* overlay för info-knappen */
+.info-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: var(--blue);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 2000;
+    opacity: 0;
+    pointer-events: none;
+    visibility: hidden;
+}
+
+.info-content {
+    text-align: center;
+    color: var(--cream);
+    opacity: 0;
+    transform: translateY(20px);
+}
+
+.info-content h1 {
+    font-family: 'Javel Cursive', cursive;
+    font-size: 5rem;
+    margin-bottom: 1rem;
+    color: var(--gold);
+}
+
+.info-content p {
+    font-family: 'Javel', sans-serif;
+    font-size: 1.5rem;
+    margin: 0.5rem 0;
+}
+
+.frames {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    pointer-events: none;
+    z-index: 10;
+}
+
+.frame {
+    height: 2rem;
+}
+
+.frame.blue { background: var(--blue); }
+.frame.green { background: var(--green); }
+.frame.brown { background: var(--brown); }
+.frame.cream { background: var(--cream); }
+
+/* Frame pairs */
+.frame-pair {
+    flex: 1;
+    display: flex;
+}
+
+.frame-pair .frame {
+    flex: 1;
+}
+
+/* Top and Bottom Frame Rows */
+.frame-row {
+    position: absolute;
+    left: 0;
+    width: 100%;
+    display: flex;
+}
+
+.frame-row .frame {
+    height: 0.5rem;
+}
+
+.frame-row.top { top: 0; }
+.frame-row.bottom { bottom: 0; }
+
+/* Left and Right Frame Columns */
+.frame-column {
+    position: absolute;
+    top: 0;
+    width: 0.5rem;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.frame-column .frame-pair {
+    flex: 1;
+    flex-direction: column;
+}
+
+.frame-column .frame {
+    width: 0.5rem;
+    flex: 1;
+}
+
+.frame-column.left { left: 0; }
+.frame-column.right { right: 0; }
+
+/* Grid overlay pattern */
+.book-column::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    opacity: 0.1;
+    pointer-events: none;
+}
+
+/* Table of Contents Styles */
+.toc-strip {
+    position: fixed;
+    top: 4rem;
+    left: 0;
+    right: 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.5rem 2rem;
+    width: 100%;
+    overflow-x: auto;
+    gap: 2rem;
+    z-index: 1000;
+    border-bottom: 1px solid var(--brown);
+    background: transparent;
+}
+
+.toc-item {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    text-decoration: none;
+    color: var(--brown);
+    font-family: 'Javel', sans-serif;
+    font-size: 1rem;
+    white-space: nowrap;
+    transition: all 0.3s ease;
+}
+
+.toc-item:hover {
+    color: var(--blue);
+}
+
+.toc-number {
+    font-family: 'Javel Cursive', cursive;
+    color: var(--blue);
+    font-size: 0.8rem;
+}
+
+/* responsiv design för mobil */
+@media (max-width: 768px) {
+    .book-spread {
+        flex-direction: column;
+        gap: 1rem;
+    }
+    
+    .book-column {
+        height: 50vh;
+    }
+    
+    .left-page, .right-page {
+        box-shadow: inset 0 5px 15px rgba(0, 0, 0, 0.1);
+    }
+    
+    .nav-arrow {
+        font-size: 1rem;
+        padding: 0.3rem;
+        opacity: 0.5;
+    }
+    
+    .sticky-nav {
+        padding: 1rem;
+    }
+    
+    .sticky-nav a {
+        font-size: 0.9rem;
+    }
+}
+
+/* snygga till scrollbaren lite */
+::-webkit-scrollbar {
+    width: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: var(--cream);
+}
+
+::-webkit-scrollbar-thumb {
+    background: var(--brown);
+    border-radius: 4px;
+}
